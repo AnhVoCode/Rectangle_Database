@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Rectangle Database</title>
+    <link rel="stylesheet" href="./stylesheet/rectangle.css">
+    <script src="./scripts/main.js"></script>
+</head>
+
+<html lang="en">
+    <div id="functionButton">
+        <button id="addBtn">Add Rectangle</button>
+        <button id="delBtn">Delete Rectangle</button>
+    </div>
+
+    <div id="addMenu" class="menu">
+        <div id="addContent" class="menuContent">
+            <h2>Add Rectangle to Database</h2>
+            <form id="addForm" action="/addRect" method="post" onsubmit="return validate()">
+                <div class="form-style">
+                    <input type="text" name="uname" value="" placeholder="Username"><br>
+                    <input type="number" name="rect_id" value="" placeholder="ID"><br>
+                    <input type="number" name="width"value="" placeholder="Width"><br>
+                    <input type="number" name="height" value="" placeholder="Height"><br>
+                    <input type="number" name="perimeter" value="" placeholder="Perimeter"><br>
+                    <input type="number" name="area" value="" placeholder="Area"><br>
+                    <input type="text" name="color" value="" placeholder="Color"><br>
+                    <input type="submit" name="sub" value="ADD" id="addSubmit"><br>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="delMenu" class="menu">
+        <div id="delContent" class="menuContent">
+            <h2>Select Rectangle to Delete</h2>
+            <form id="delForm" action="/delRect" method="post">
+                <div id="form-style">
+                    <% if (results.length){ %>
+                        <label><span>Name</span><select name="delName">
+                            <% for(var i=0; i < results.length; i++) { %>
+                                <option value="<%= results[i].name %>"><%= results[i].name %></option>
+                            <% } %>
+                        </select></label>
+                        <input type="submit"value="Delete" id="delSubmit"><br>
+                    <% } else { %>
+                        <h3>No Rectangle to Delete</h3>
+                    <% } %>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <body>
+        <main>
+            <h1>Rectangle Database</h1>
+            <table id="database">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Color</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (results.length) { 
+                         for(var i=0; i < results.length; i++) { %>
+                             <tr>
+                                 <td><a href="moreinfo/<%= results[i].name %>" title="More information"><%= results[i].name %></a></td>
+                                 <td><%= results[i].color %></td>
+                             </tr>
+                         <% }       
+                     } 
+                     else{ %>
+                         <tr>
+                             <td colspan="3">No Rectangle</td>
+                         </tr>
+                     <% } %>
+                </tbody>
+            </table>
+        </main>
+    </body>
+</html>
