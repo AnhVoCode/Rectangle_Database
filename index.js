@@ -53,21 +53,19 @@ app.post('/addRect', (req,res)=>{
       if(error)
         res.send(error)
       else{
-        var results = {'results': result.rows};
-        res.redirect('pages/main',results);
+        res.redirect('/')
       }
     });
 });
 
 // Delete Rectangle
 app.post('/delRect', (req,res) => {
-  var query = `DELETE FROM rect WHERE uname='${req.body.uname}'`
+  var query = `DELETE FROM rect WHERE uname='${req.body.delName}'`
   pool.query(query, (error,result) => {
     if(error)
       res.send(error)
     else{
-      var results = {'results': result.rows}
-      res.render('pages/modify',results);
+      res.redirect('/')
     }
   })
 })
