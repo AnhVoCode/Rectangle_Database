@@ -10,6 +10,12 @@ main {
     border-top: 25px solid #00bbff;
 }
 
+canvas{
+    display: block;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
 .sideBtn {
     height: 100%;
     width: 120px;

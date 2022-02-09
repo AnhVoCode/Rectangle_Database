@@ -23,7 +23,7 @@ main {
   border-top: 25px solid #00bbff;
 }
 
-.functionButton a {
+#functionButton a {
   padding: 6px 8px 6px 16px;
   font-size: 25px;
   color: #111111;
@@ -46,7 +46,7 @@ main {
   margin-bottom: 15px;
 }
 
-.functionButton button:hover {
+#functionButton button:hover {
   background-color: #555555; 
   color: #ffffff;
 }

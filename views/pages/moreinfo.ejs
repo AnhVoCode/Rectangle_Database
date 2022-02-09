@@ -9,7 +9,6 @@
 </head>
 
 <html lang="en">
-
     <div class="sideBtn">
         <button id="homeBtn">Home</button>
     </div>
@@ -17,8 +16,10 @@
 <body>
     <main>
         <% if(results.length) { %>
-            <h1><%= results[0].uname %></h1>
+            <h1 id="name"><%= results[0].uname %></h1>
         <% } %>
+
+        <canvas id="rectangle"></canvas>
 
         <table id="rectData">
             <tr>
@@ -33,7 +34,7 @@
             <% if(results.length) { 
                 for(var i=0; i < results.length; i++) { %>
                     <tr>
-                        <td><%= results[i].uid %></td>
+                        <td id="uid"><%= results[i].uid %></td>
                         <td id="updateName" contenteditable="true"><%= results[i].uname %></td>
                         <td id="updateWidth" contenteditable="true"><%= results[i].width %></td>
                         <td id="updateHeight" contenteditable="true"><%= results[i].height %></td>
@@ -45,10 +46,10 @@
             } %>
         </table>
 
-        <p>Click on the atrribute cell to modity its content</p>
+        <p>Click on the cell to modity its content</p>
         <form action="/update" onsubmit="return getContent()" method="post">
             <div class="form-style">
-                <textarea name="tmpText" id="tmpText"></textarea>
+                <textarea name="tmpText" id="tmpText" style="display: none;"></textarea>
                 <input type="submit" value="UPDATE">
             </div>
         </form>
@@ -61,9 +62,10 @@
 
             function getContent() {
                 var tmpText = document.getElementById("tmpText")
+                var uid = document.getElementById("uid").innerHTML
                 var uname = document.getElementById("updateName").innerHTML
                 var width = document.getElementById("updateWidth").innerHTML
-                var height = document.getElementById("updatHeight").innerHTML
+                var height = document.getElementById("updateHeight").innerHTML
                 var perimeter = (parseInt(width) + parseInt(height)) * 2
                 var area = parseInt(width) * parseInt(height)
                 var color = document.getElementById("updateColor").innerHTML
@@ -71,10 +73,37 @@
             
                 var query = `UPDATE rect 
                             SET uname='${uname}', width=${width}, height=${height}, perimeter=${perimeter}, area=${area}, color='${color}' 
-                            WHERE uname='${uname}'`;
+                            WHERE uid='${uid}'`;
                 tmpText.innerHTML = query;
-                return;
+                return true;
             }
+
+            // Drawing Rectangle
+                var canvas = document.getElementById("rectangle");
+                var context = canvas.getContext("2d");
+
+                var table = document.getElementById("rectData");
+                var rows = table.rows;
+
+                var x = 10
+                var y = 10
+
+                var rect_name = rows[1].getElementsByTagName("td")[1].innerHTML
+                var rect_width = parseInt(rows[1].getElementsByTagName("td")[2].innerHTML)
+                var rect_height = parseInt(rows[1].getElementsByTagName("td")[3].innerHTML)
+                canvas.height = rect_height
+                canvas.width = rect_width
+
+                context.beginPath()
+                console.log(rect_name)
+                context.fillStyle = (rows[1].getElementsByTagName("td")[6].innerHTML)
+                context.fillRect(x, y, rect_width, rect_height)
+                context.rect(x-1, y-1, rect_width, rect_height)
+                context.font = "bold 40px Times New Roman"
+                context.textAlign = "center"
+                context.textBaseLine = "middle"
+                context.fillStyle = "black"
+                context.fillText(rect_name,  rect_width-x, (y+ rect_height / 2))
         </script>
     </main>
 </body>
