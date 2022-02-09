@@ -1,0 +1,102 @@
+body {
+    font: normal 100% Cambria,Georgia,"Times New Roman",Times,serif;
+    margin: 0;
+    background: #ffffff; 
+}
+
+main {
+    margin-left: 120px;
+    background: #ffffff;
+    border-top: 25px solid #00bbff;
+}
+
+.sideBtn {
+    height: 100%;
+    width: 120px;
+    position: fixed;
+    z-index: 1;
+    background-color: #00bbff;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+    border-top: 25px solid #00bbff;
+}
+
+.sideBtn a {
+    padding: 6px 8px 6px 16px;
+    font-size: 25px;
+    color: #111111;
+    display: block;
+}
+
+.sideBtn button {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    border: none;
+    padding: 12px 5px;
+    color: #555555;
+    background-color: #00bbff;
+    border: 2px solid #555555;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 106.5px;
+    margin-bottom: 15px;
+}
+
+.sideBtn button:hover {
+    background-color: #555555; 
+    color: #ffffff;
+}
+
+h1 {
+    text-align: center;
+}
+
+.form-style {
+    margin: auto;
+    max-width: 400px;
+    padding: 20px 12px 10px 20px;
+    text-align: center;
+}
+
+
+.form-style input[type=submit] {
+    background: #00bbff;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+}
+
+table{
+    margin: auto;
+    width: 98.5%;
+    border-collapse: collapse;
+    border-spacing: 2px;
+}
+
+th {
+    width: 12em;
+    text-align: left;
+    padding: .25em .5em;
+    background-color: #eee;
+    border: 1px solid #bbb;
+}
+
+td {
+    width: 12em;
+    text-align: left;
+    padding: .25em .5em;
+    border: 1px solid #bbb;
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
+p {
+    text-align: center;
+}

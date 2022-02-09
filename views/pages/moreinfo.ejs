@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <% if (results.length) {%>
+        <title>More Info - <%= results[0].uname %></title>
+    <% } %>
+    <link rel="stylesheet" href="/stylesheets/moreinfo.css">
+</head>
+
+<html lang="en">
+
+    <div class="sideBtn">
+        <button id="homeBtn">Home</button>
+    </div>
+
+<body>
+    <main>
+        <% if(results.length) { %>
+            <h1><%= results[0].uname %></h1>
+        <% } %>
+
+        <table id="rectData">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Width</th>
+                <th>Height</th>
+                <th>Perimeter</th>
+                <th>Area</th>
+                <th>Color</th>
+            </tr>
+            <% if(results.length) { 
+                for(var i=0; i < results.length; i++) { %>
+                    <tr>
+                        <td><%= results[i].uid %></td>
+                        <td id="updateName" contenteditable="true"><%= results[i].uname %></td>
+                        <td id="updateWidth" contenteditable="true"><%= results[i].width %></td>
+                        <td id="updateHeight" contenteditable="true"><%= results[i].height %></td>
+                        <td><%= results[i].perimeter %></td>
+                        <td><%= results[i].area %></td>
+                        <td id="updateColor" contenteditable="true"><%= results[i].color %></td>
+                    </tr>    
+                <% } 
+            } %>
+        </table>
+
+        <p>Click on the atrribute cell to modity its content</p>
+        <form action="/update" onsubmit="return getContent()" method="post">
+            <div class="form-style">
+                <textarea name="tmpText" id="tmpText"></textarea>
+                <input type="submit" value="UPDATE">
+            </div>
+        </form>
+
+        <script>
+            var homeBtn = document.getElementById("homeBtn");
+            homeBtn.onclick = function(){
+                window.location.href = '/';
+            }
+
+            function getContent() {
+                var tmpText = document.getElementById("tmpText")
+                var uname = document.getElementById("updateName").innerHTML
+                var width = document.getElementById("updateWidth").innerHTML
+                var height = document.getElementById("updatHeight").innerHTML
+                var perimeter = (parseInt(width) + parseInt(height)) * 2
+                var area = parseInt(width) * parseInt(height)
+                var color = document.getElementById("updateColor").innerHTML
+
+            
+                var query = `UPDATE rect 
+                            SET uname='${uname}', width=${width}, height=${height}, perimeter=${perimeter}, area=${area}, color='${color}' 
+                            WHERE uname='${uname}'`;
+                tmpText.innerHTML = query;
+                return;
+            }
+        </script>
+    </main>
+</body>
+</html>

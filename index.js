@@ -19,16 +19,15 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // Main Page
-app.get('/', async (req, res) => {
-  try {
-    const client = await pool.connect()
-    const result = await client.query('SELECT * FROM rect')
-    const results = { 'results': (result) ? result.rows : null}
-    res.render('pages/main', results)
-    client.release()
-  } catch (err) {
-    res.send(err);
-  }
+app.get('/', (req, res) => {
+  pool.query('SELECT * FROM rect;', (error, result) => {
+    if(error)
+      res.send(error)
+    else{
+      var results = {'results' : result.rows}
+      res.render('pages/main', results);
+    }  
+  })
 })
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
@@ -39,14 +38,13 @@ app.post('/addRect', (req,res)=>{
       uname,
       width,
       height,
-      perimeter,
-      area,
       color
     } = req.body;
-    
+    var perimeter = (parseInt(width) + parseInt(height)) * 2;
+    var area = parseInt(width) * parseInt(height); 
     var query = `
       INSERT INTO rect
-      VALUES ('${uname}', ${width}, ${(height)}, ${(perimeter)}, ${area}, '${(color)}');
+      VALUES (DEFAULT, '${uname}', ${width}, ${(height)}, ${(perimeter)}, ${area}, '${(color)}');
       `;
 
     pool.query(query, (error, result) => {
@@ -69,14 +67,29 @@ app.post('/delRect', (req,res) => {
     }
   })
 })
-/*app.get('/rect-database/:uname', (req,res)=> {
-    var getUserQuery = `SELECT FROM * rect WHERE uname='${req.params.uname}'`;
+
+// More info page
+app.get('/moreinfo/:uname', (req,res)=> {
+    var getUserQuery = `SELECT * FROM rect WHERE uname='${req.params.uname}'`;
     pool.query(getUserQuery, (error, result)=>{
         if(error)
             res.send(error);
-        var results = {'results' : result.rows};
-        res.render('pages/db', results);
+        else{
+          var results = {'results' : result.rows}
+          res.render('pages/moreinfo', results);
+        }
     })
-})*/
+})
+
+app.post('/update', (req,res)=>{
+  var query = req.body.tmpText;
+  pool.query(query, (error,result)=>{
+    if(error)
+      res.send(error);
+    else{
+      res.redirect('/')
+    }
+  })
+})
 
 
