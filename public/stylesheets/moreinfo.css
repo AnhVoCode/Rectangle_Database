@@ -1,13 +1,46 @@
 body {
+    margin:  0;
+    border-top: 25px solid orange ;
+    background-color: rgb(243, 243, 203);
     font: normal 100% Cambria,Georgia,"Times New Roman",Times,serif;
-    margin: 0;
-    background: #ffffff; 
 }
 
 main {
-    margin-left: 120px;
-    background: #ffffff;
-    border-top: 25px solid #00bbff;
+    margin-left: 58px;
+    width: 90%;
+    background: rgb(243, 243, 203);
+}
+
+table{
+    margin: auto;
+    margin-bottom: 10px;
+    border-collapse: collapse;
+    width: 90%;
+    border-spacing: 2px;
+    margin-right: 0;
+  } 
+  
+  th {
+    width: 30px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid white;
+    background-color: rgb(183, 229, 243);
+    
+  }
+  
+  td {
+    width: 30px;
+    text-align: left;
+    font-size: 18px;
+    padding: 8px;
+    border: 1px solid white;
+    background-color: rgb(217, 240, 250);
+  }
+  
+
+p {
+    text-align: center;
 }
 
 canvas{
@@ -18,42 +51,29 @@ canvas{
 
 .sideBtn {
     height: 100%;
-    width: 120px;
+    width: 100px;
     position: fixed;
     z-index: 1;
-    background-color: #00bbff;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;
-    padding-top: 20px;
-    border-top: 25px solid #00bbff;
-}
-
-.sideBtn a {
-    padding: 6px 8px 6px 16px;
-    font-size: 25px;
-    color: #111111;
-    display: block;
+    background-color: rgb(238, 208, 153);
+    padding-top: 40px;
 }
 
 .sideBtn button {
-    margin: auto;
-    display: flex;
     justify-content: center;
-    font-size: 16px;
-    border: none;
-    padding: 12px 5px;
-    color: #555555;
-    background-color: #00bbff;
-    border: 2px solid #555555;
-    transition-duration: 0.4s;
+    color: white;
+    font-size: 20px;
+    font: normal 100% Cambria,Georgia,"Times New Roman",Times,serif;
+    padding: 12px;
+    width: 105px;
+    background-color: orange;
+    border: 1px solid white;
+    border-radius: 10px;
     cursor: pointer;
-    width: 106.5px;
-    margin-bottom: 15px;
+    transition-duration: 0.4s;
 }
 
 .sideBtn button:hover {
-    background-color: #555555; 
+    background-color: #c4511c; 
     color: #ffffff;
 }
 
@@ -70,39 +90,10 @@ h1 {
 
 
 .form-style input[type=submit] {
-    background: #00bbff;
-	padding: 8px 15px 8px 15px;
+    font: normal 100% Georgia, "Times New Roman", Times, serif;
+    background: blueviolet;
+	padding: 15px;
 	border: none;
 	color: #fff;
 }
 
-table{
-    margin: auto;
-    width: 98.5%;
-    border-collapse: collapse;
-    border-spacing: 2px;
-}
-
-th {
-    width: 12em;
-    text-align: left;
-    padding: .25em .5em;
-    background-color: #eee;
-    border: 1px solid #bbb;
-}
-
-td {
-    width: 12em;
-    text-align: left;
-    padding: .25em .5em;
-    border: 1px solid #bbb;
-}
-
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0; 
-}
-
-p {
-    text-align: center;
-}
